@@ -11,12 +11,13 @@ namespace Backend.Controllers
     {
         // GET: api/<UsersController>
         [HttpGet("Search", Name = "MangaSearchList")]
-        public Manga Get(string name)
+        public async Task<List<MangaSuggestion>> Get(string name)
         {
-            //public Manga[] mangaList;
-            //mangaList[0] = new Manga("asd");
-            return Manga[Manga("asd")];
+            var searchManga = new SearchManga();
+            return await searchManga.SendGetRequest(name);
         }
+
+      
 
         //// GET api/<UsersController>/5
         //[HttpGet("{id}")]
