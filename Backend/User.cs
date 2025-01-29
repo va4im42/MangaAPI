@@ -1,11 +1,10 @@
 ﻿namespace Backend
 {
-    public class Users
+    public class User
     {
-        // ID пользоватея в БД
         public int Id {get; set; }
-        // ID TG пользователя
         public int TgId { get; set; }
+        public string? UserName { get; set; }
 
     }
 }

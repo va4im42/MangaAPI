@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Backend.ORM;
+using Microsoft.AspNetCore.Mvc;
+using System.Xml.Linq;
+
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -17,7 +20,18 @@ namespace Backend.Controllers
             return await searchManga.SendGetRequest(name);
         }
 
-      
+        [HttpPost("user", Name = "saveUser")]
+        public void saveUser(int userTg, string name)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                User user = new User {TgId =userTg, UserName = name};
+                db.Users.Add(user);
+                db.SaveChanges();
+            }
+        }
+
+
 
         //// GET api/<UsersController>/5
         //[HttpGet("{id}")]
